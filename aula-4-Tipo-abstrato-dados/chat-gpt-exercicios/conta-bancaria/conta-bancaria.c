@@ -29,8 +29,23 @@ void Deposito(ContaBancaria *conta, double valor){
 
 }
 
+void Saque(ContaBancaria *conta, double valor){
+  conta->saldo -= valor;
+  printf("Saque de %.2f realizado com sucesso.\n", valor);
+
+}
+
 void Imprime(ContaBancaria* conta) {
     printf("Conta: %d\nSaldo: %.2f\n", conta->numero, conta->saldo);
 }
 
 
+void Libera(ContaBancaria* conta) {
+    // Verifica se o ponteiro não é NULL antes de tentar liberar a memória
+    if (conta != NULL) {
+        free(conta);  // Libera a memória alocada para a estrutura
+        printf("Memória liberada com sucesso.\n");
+    } else {
+        printf("Ponteiro NULL. Nenhuma memória para liberar.\n");
+    }
+}

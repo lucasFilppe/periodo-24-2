@@ -66,3 +66,39 @@ TimeFutebol* CriandoTime(char *nome, char *treinador, int vitorias, int derrotas
   return time;
   
 }
+
+void ExibirTime(TimeFutebol *time, int qntJogadores) {
+    if (time == NULL) {
+        printf("Time inválido.\n");
+        return;
+    }
+
+    printf("Nome do time: %s\n", time->nome);
+    printf("Treinador: %s\n", time->treinador);
+    printf("Vitórias: %d\n", time->vitorias);
+    printf("Derrotas: %d\n", time->derrotas);
+    printf("Empates: %d\n", time->empates);
+
+    printf("\nJogadores:\n");
+    for (int i = 0; i < qntJogadores; i++) {
+        printf("  Nome: %s\n", time->jogadores[i].nome);
+        printf("  Jogos: %d\n", time->jogadores[i].jogos);
+        printf("  Gols: %d\n", time->jogadores[i].gols);
+        printf("  Assistências: %d\n\n", time->jogadores[i].assistencias);
+    }
+}
+
+void LiberarTime(TimeFutebol *time, int qntJogadores) {
+    if (time != NULL) {
+        free(time->nome);
+        free(time->treinador);
+
+        // Libera a memória de cada jogador (se necessário)
+        for (int i = 0; i < qntJogadores; i++) {
+            free(time->jogadores[i].nome);
+        }
+
+        free(time->jogadores);
+        free(time);
+    }
+}

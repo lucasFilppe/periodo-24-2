@@ -13,5 +13,11 @@ int main() {
     printf("\nDepois da movimentacao:\n");
     Imprime(conta1);  // Imprime o estado final
 
+    Saque(conta1, 200);
+    printf("\nDepois da movimentacao:\n");
+    Imprime(conta1);  // Imprime o estado final
+
+    Libera(conta1);
+
     return 0;
 }
