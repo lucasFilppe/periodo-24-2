@@ -24,6 +24,7 @@ Ponto* PontoCria( float x, float y){
 
 void PontoLibera(Ponto** p){
     free(*p);
+    free(p);
 }
 
 //devolve as coordenadas de um ponto

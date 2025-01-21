@@ -2,6 +2,6 @@
 
 typedef struct timeFutebol TimeFutebol;
 
-TimeFutebol* CriandoTime(char *nome, char *treinador, int vitorias, int derrotas, int empates, Jogador *jogadores, int qntJogadores);
-void LiberarTime(TimeFutebol *time, int qntJogadores);
-void ExibirTime(TimeFutebol *time, int qntJogadores);
+TimeFutebol* CriandoTime(char *nome, char *treinador, int vitorias, int derrotas, int empates);
+void LiberarTime(TimeFutebol *time);
+void ExibirTime(TimeFutebol *time);
