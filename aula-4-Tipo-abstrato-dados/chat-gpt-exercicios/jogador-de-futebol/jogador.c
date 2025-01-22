@@ -32,7 +32,7 @@ Jogador* Cria_Jogador() {
     scanf("%d", &gols);
     printf("Digite a quantidade de Assistências: ");
     scanf("%d", &assistencias);
-    printf("\n");
+    printf("\n\n");
 
     // Aloca memória para o nome e copia a string
     x->nome = (char*)malloc(strlen(nome) + 1); // +1 para o caractere nulo
@@ -53,11 +53,11 @@ Jogador* Cria_Jogador() {
 
 
 void Imprime(Jogador* x){
-  printf("ESTATISTICAS DO JOGADOR\n\n");
+  printf("\n\nESTATISTICAS DO JOGADOR\n\n");
   printf("Nome: %s\n", x->nome);
   printf("Jogos: %d\n", x->jogos);
   printf("Gols: %d\n", x->gols);
-  printf("Assitencias %d\n", x->assistencias);
+  printf("Assitencias %d\n\n", x->assistencias);
 }
 
 void SomaJogadores(Jogador *x, Jogador *y){
