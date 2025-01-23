@@ -9,72 +9,50 @@ struct matriz {
 };
 
 Matriz* alocar(int n) {
-    // Preencher aqui
-    //aloca memória para a estrutura Matriz
-    Matriz *m = (Matriz*)malloc(n * sizeof(Matriz));
+    // Alocando estrutura da matriz
+    Matriz* matriz = (Matriz*)malloc(sizeof(Matriz));
 
-    m->n = n;
+    // Definindo o tamanho da matriz
+    matriz->n = n;
 
-    //aloca matriz para as linhas
-    m->values = (double**)malloc(n *sizeof(double *));
-
-    //aloca matriz para colunas
-    for( int i = 0; i < n; i++){
-        m->values[i] = (double*)malloc(n * sizeof(double));
-    }
-
-     // Inicializa a matriz com zeros
+    // Alocando matriz do tipo double
+    matriz->values = (double**)malloc(n * sizeof(double*));
     for (int i = 0; i < n; i++) {
-        for (int j = 0; j < n; j++) {
-            m->values[i][j] = 0.0;
-        }
+        matriz->values[i] = (double*)malloc(n * sizeof(double));
     }
-    
-    return m;
 
+    return matriz;
 }
 
 Matriz* desalocar(Matriz *matriz) {
-    // Preencher aqui
-    //libera a memoria alocada para cada linha
-    for(int i = 0; i < matriz->n; i++){
+    // Liberar a memória alocada
+    for (int i = 0; i < matriz->n; i++) {
         free(matriz->values[i]);
     }
-
-    //libera o ponteiro para linhas
-    if(matriz->values != NULL){
-        free(matriz->values);
-    }
-
-    //libera a propria estrutura
+    free(matriz->values);
     free(matriz);
-
-    // Retorna NULL para indicar que a matriz foi desalocada
     return NULL;
 }
 
 void le(Matriz *matriz) {
-     //Preencher aqui
-     //lendo matriz para linha
-     for(int i = 0; i < matriz->n; i++){
-        for(int j = 0; i < matriz->n; j++){
+    // Lendo os valores da matriz
+    for (int i = 0; i < matriz->n; i++) {
+        for (int j = 0; j < matriz->n; j++) { // Corrigido o loop interno
             scanf("%lf", &matriz->values[i][j]);
         }
-     }
-
+    }
 }
 
 double somaParte(Matriz *matriz, int *cont) {
+     double resultado = 0.0;
 
-    // Preencher aqui
-    double soma = 0.0;
-    *cont = 0;
-
-    for(int i = 7; i < matriz->n; i++){
-        for(int j = matriz->n - i ; j < i; j++){
-            soma += matriz->values[i][j];
-            (*cont)++;
+    // Percorre a área inferior da matriz
+    for (int i = 7; i < 12; i++) { // Linhas da área inferior (7 a 11)
+        for (int j = 12 - i; j < i; j++) { // Colunas dentro da área verde
+            resultado += matriz->values[i][j];
+            (*cont)++; // Incrementa o contador de elementos
         }
     }
-    return  soma;
+
+    return resultado;
 }

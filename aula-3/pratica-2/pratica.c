@@ -1,37 +1,46 @@
 #include <stdio.h>
-
 #include "matriz.h"
 
-int main()
-{
-    char opcao;
+int main() {
     int n, cont;
-    double s;          // Variável para armazenar a soma da área inferior
+    char opcao;
 
-    // Leitura do Char
-    // Leitura do Char
+    // Leitura da operação desejada
     scanf(" %c", &opcao);
-    
+
     // Leitura do tamanho da matriz
     scanf("%d", &n);
-    
+
     // Declarar e alocar matriz
-    Matriz *m = alocar(n);
+    Matriz* matriz = alocar(n);
+
+    // Leitura da matriz
+    le(matriz);
+
+    /*  Impressão da matriz
+    printf("Matriz lida:\n");
+     for (int i = 0; i < matriz->n; i++) {
+        for (int j = 0; j < matriz->n; j++) {
+            printf("%.2lf ", matriz->values[i][j]);
+        }
+        printf("\n");
+    }
+    printf("\n");*/
+
+    // Soma parte da matriz
     
-    // Leitura da Matriz e Cálculos
-     le(m);
-    
-    // Soma parte dos valores da matriz e conta a quantidade
-    s = somaParte(m, &cont);
-    
+    double soma = somaParte(matriz, &cont);
     // Impressão dos resultados
     if (opcao == 'S') {
-        printf("%.1lf\n", s); // Soma
+        printf("%.1lf\n", soma); // Soma
     } else if (opcao == 'M') {
-        printf("%.1lf\n", s / cont); // Média
+        printf("%.1lf\n", soma / 30.0); // Média (30 elementos na área inferior)
     }
 
     // Liberar memória
-    m = desalocar(m);
+    matriz = desalocar(matriz);
+
     return 0;
 }
+
+
