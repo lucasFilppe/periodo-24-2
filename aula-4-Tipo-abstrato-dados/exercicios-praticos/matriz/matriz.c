@@ -29,13 +29,33 @@ void Libera_Matriz(Matriz* mat) {
     free(mat);
 }
 
-float Acessa_Matriz(Matriz* mat, int i, int j) {
-    // Verifica se os índices estão fora dos limites da matriz
-    if (i < 0 || i >= mat->lin || j < 0 || j >= mat->col) {
-        printf("Elemento indisponível: índices fora dos limites\n");
-        return -1.0; // Retorna um valor especial para indicar erro
+void imprime_Matriz(Matriz* mat, int m, int n){
+    for (int i = 0; i < m; i++)
+    {
+        for (int j = 0; j < n; j++)
+        {
+            printf("%.2f ", mat->M[i][j]);
+        }
+        printf("\n");
     }
+    printf("\n");
+}
 
-    // Retorna o valor diretamente do índice (i, j)
-    return mat->M[i][j];
+// Função para acessar o elemento na posição x, y
+float Acessa_Matriz(Matriz* mat, int x, int y) {
+    if (x < 0 || x >= mat->lin || y < 0 || y >= mat->col) {
+        printf("Erro: Índices fora dos limites da matriz.\n");
+        exit(EXIT_FAILURE);
+    }
+    return mat->M[x][y];
+}
+
+void Atribui_Matriz(Matriz* mat, int i, int j, float valor) {
+    // Verifica se os índices estão dentro dos limites da matriz
+    if (i < 0 || i >= mat->lin || j < 0 || j >= mat->col) {
+        printf("Erro: Índices fora dos limites da matriz.\n");
+        exit(EXIT_FAILURE); // Encerra o programa em caso de erro
+    }
+    // Atribui o valor à posição (i, j)
+    mat->M[i][j] = valor;
 }
