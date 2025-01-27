@@ -45,12 +45,16 @@ void le(Matriz *matriz) {
 
 double somaParte(Matriz *matriz, int *cont) {
      double resultado = 0.0;
-
-    // Percorre a área inferior da matriz
-    for (int i = 7; i < 12; i++) { // Linhas da área inferior (7 a 11)
-        for (int j = 12 - i; j < i; j++) { // Colunas dentro da área verde
-            resultado += matriz->values[i][j];
-            (*cont)++; // Incrementa o contador de elementos
+    // Supondo que a matriz é quadrada e está corretamente inicializada
+    int tamanho = matriz->n;
+   
+    // Ajusta os limites do loop com base no tamanho da matriz
+    for (int i = 7; i < tamanho; i++) { // Linhas da área inferior (7 até tamanho-1)
+        for (int j = tamanho - i; j < i && j < tamanho; j++) { // Colunas dentro da área
+            if (j >= 0) { // Verifica se o índice da coluna é válido
+                resultado += matriz->values[i][j];
+                (*cont)++; // Incrementa o contador de elementos
+            }
         }
     }
 
